@@ -7,6 +7,8 @@ gem 'rails', '~> 6.1.5'
 gem 'devise'
 #追加
 gem 'devise-i18n'
+#追加
+gem 'ransack'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'

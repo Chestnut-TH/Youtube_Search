@@ -1,0 +1,14 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: test_name
+  url: test_url
+  detail: test_detail
+  tag1: test_tag1
+  tag2: test_tag2
+  tag3: test_tag3
+  tag4: test_tag4
+  tag5: test_tag5
+  assessment: 1
+
+

@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_03_140826) do
+ActiveRecord::Schema.define(version: 2022_04_05_163224) do
+
+  create_table "chanels", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "url", null: false
+    t.string "detail"
+    t.string "tag1"
+    t.string "tag2"
+    t.string "tag3"
+    t.string "tag4"
+    t.string "tag5"
+    t.integer "assessment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
