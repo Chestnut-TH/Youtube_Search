@@ -1,0 +1,19 @@
+<h1 class="text-center">検索結果</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">チャンネル名</th>
+            <th scope="col"> URL</th>
+        </tr>
+    </thead>
+  <tbody>
+    <% @chanels.each do |chanel| %>
+        <tr>
+            <th scope="row"><%= chanel.id %></th>
+            <td><%= chanel.name %></td>
+            <td><%= link_to chanel.url , chanel.url %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

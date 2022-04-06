@@ -1,2 +1,5 @@
-<h1>Chanels#search</h1>
-<p>Find me in app/views/chanels/search.html.erb</p>
+<% if @chanels.length == 0 %>
+    <%= render 'chanels/no_data' %> 
+<% else %>
+    <%= render 'chanels/result' %>
+<% end %>
