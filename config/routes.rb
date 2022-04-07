@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'chanels/search'
   resources :chanels
-  get 'home/index'
+  get 'homes/index'
   devise_for :users
-  root to: 'home#index'
+  post 'homes/guest_sign_in', to: 'homes#guest_sign_in'
+  root to: 'homes#index'
 end
