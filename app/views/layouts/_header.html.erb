@@ -33,8 +33,11 @@
                 <li class="nav-item">
                     <li><%= link_to 'アカウント登録', new_user_registration_path, class:"nav-link active"%></li>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item"> 
                     <li><%= link_to 'ログイン', new_user_session_path,class:"nav-link active"%></li>
+                </li>
+                <li class="nav-item"> 
+                    <li><%= link_to 'ゲストログイン', homes_guest_sign_in_path, method: :post ,class:"nav-link active"%></li>
                 </li>
             <% end %>    
         </ul>
