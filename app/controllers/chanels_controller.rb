@@ -4,13 +4,12 @@ class ChanelsController < ApplicationController
   end
   
   def search
-
     tagArray = Array[params[:tag1],params[:tag2],params[:tag3],params[:tag4],params[:tag5]]
     @chanels = Chanel.where(tag1: tagArray)
-    .and(Chanel.where(tag2: tagArray))
-    .and(Chanel.where(tag3: tagArray))
-    .and(Chanel.where(tag4: tagArray))
-    .and(Chanel.where(tag5: tagArray))    
+    .or(Chanel.where(tag2: tagArray))
+    .or(Chanel.where(tag3: tagArray))
+    .or(Chanel.where(tag4: tagArray))
+    .or(Chanel.where(tag5: tagArray))    
   end
 
    
@@ -33,20 +32,44 @@ class ChanelsController < ApplicationController
   def show
     @chanel = Chanel.find(params[:id]);
   end
+  def edit
+    @chanel = Chanel.find(params[:id]);
+  end
+  def update
+    if current_user
+      chanel_update     
+    else
+      not_logged_action
+    end
+  end
+
+  def destroy
+    Chanel.find(params[:id]).destroy
+    redirect_to root_url
+  end
 
   private
     def chanel_regist
-      @chanel = Chanel.new (chanel_params)
-      if @chanel.save
+      chanel = Chanel.new (chanel_params)
+      if chanel.save
         tag_regist
-        redirect_to @chanel
+        redirect_to chanel
+      else
+        render new_chanel
+      end
+    end
+
+    def chanel_update
+      if Chanel.update(chanel_params)
+        tag_regist
+        redirect_to chanel_path
       else
         render new_chanel
       end
     end
 
     def chanel_params
-      params.require(:chanel).permit(:name, :url, :tag1, :tag2, :tag3, :tag4, :tag5)
+      params.require(:chanel).permit(:name, :url, :detail, :tag1, :tag2, :tag3, :tag4, :tag5)
     end
 
     def tag_regist

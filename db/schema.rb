@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_04_06_153231) do
     t.integer "assessment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "url"], name: "index_chanels_on_name_and_url", unique: true
   end
 
   create_table "tags", force: :cascade do |t|

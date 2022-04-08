@@ -1,4 +1,31 @@
-<%= @chanel.id %>
-<%= @chanel.name %>
-<%= @chanel.url %>
-<%= @chanel.tag1 %>
+<div class="border p-3 text-center border-3">
+    <h1 class="fw-bold">チャンネル名：<%= @chanel.name %></h1>
+    <span class="fs-5">リンク : <%= link_to @chanel.url , @chanel.url %></span>
+</div>
+<div class="border p-3 text-center border-3">
+    <h2>ジャンル<h2>
+    <% if !@chanel.tag1.empty? then%>
+        <span class="pe-3">#<%= @chanel.tag1 %></span>
+    <% end %>
+    <% if !@chanel.tag2.empty? then%>
+        <span class="pe-3">#<%= @chanel.tag2 %></span>
+    <% end %>
+    <% if !@chanel.tag3.empty? then%>
+        <span class="pe-3">#<%= @chanel.tag3 %></span>
+    <% end %>
+    <% if !@chanel.tag4.empty? then%>
+        <span class="pe-3">#<%= @chanel.tag4 %></span>
+    <% end %>
+    <% if !@chanel.tag5.empty? then%>
+        <span class="pe-3">#<%= @chanel.tag5 %></span>
+    <% end %>
+</div>
+<div class="border p-3  border-3">
+    <span><%=safe_join(@chanel.detail.split("\n"),tag(:br))%></span>
+</div>
+
+<div class="text-center fs-3">
+    <span class="pe-3"><%= link_to "編集",  edit_chanel_path(@chanel) %></span>
+    <span><%= link_to "削除",  @chanel, method: :delete,  data: { confirm: "You sure?" }  %></span>
+</div>
+
