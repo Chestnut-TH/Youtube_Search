@@ -4,25 +4,29 @@ class ChanelsController < ApplicationController
   end
   
   def search
-    @tag = params[:tag]
-    @chanels = Chanel.where(tag1: @tag)
-    .or(Chanel.where(tag2: @tag))
-    .or(Chanel.where(tag3: @tag))
-    .or(Chanel.where(tag4: @tag))
-    .or(Chanel.where(tag5: @tag))    
+
+    tagArray = Array[params[:tag1],params[:tag2],params[:tag3],params[:tag4],params[:tag5]]
+    @chanels = Chanel.where(tag1: tagArray)
+    .and(Chanel.where(tag2: tagArray))
+    .and(Chanel.where(tag3: tagArray))
+    .and(Chanel.where(tag4: tagArray))
+    .and(Chanel.where(tag5: tagArray))    
   end
 
    
   def new
-    @chanel = Chanel.new  
+    if current_user
+      @chanel = Chanel.new
+    else
+      not_logged_action
+    end
   end
 
   def create
     if current_user
       chanel_regist
     else
-      flash.now[:danger] = 'ログインしてません'
-      redirect_to render new_user_session_path
+      not_logged_action
     end
   end
 
@@ -59,5 +63,10 @@ class ChanelsController < ApplicationController
 
     def tag_params
       params.require(:chanel).permit(:name, :url, :tag1, :tag2, :tag3, :tag4, :tag5)
+    end
+
+    def not_logged_action
+      flash.now[:notice] = 'ログインしてません'
+      redirect_to new_user_session_path
     end
 end

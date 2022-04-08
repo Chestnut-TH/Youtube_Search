@@ -18,15 +18,13 @@
     </div>
     <div class="container">
       <div class="main mt-5 p-5">
+          <% flash.each do |state, message| %>
+            <p class="text-center"><%= message %></p>
+          <% end %>
         <%= yield %>
       </div>
     </div>
-    <% if flash[:notice] %>
-        <p>Notice: <%= flash[:notice] %></p>
-    <% end %>
-    <% if flash[:alert] %>
-        <p>Alert: <%= flash[:alert] %></p>
-    <% end %>
+
   </body>
 
 </html>
