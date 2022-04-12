@@ -60,7 +60,8 @@ class ChanelsController < ApplicationController
     end
 
     def chanel_update
-      if Chanel.update(chanel_params)
+      chanel = Chanel.find_by(id_param)
+      if chanel.update(chanel_params)
         tag_regist
         redirect_to chanel_path
       else
@@ -70,6 +71,10 @@ class ChanelsController < ApplicationController
 
     def chanel_params
       params.require(:chanel).permit(:name, :url, :detail, :tag1, :tag2, :tag3, :tag4, :tag5)
+    end
+
+    def id_param
+      params.require(:chanel).permit(:id);
     end
 
     def tag_regist
